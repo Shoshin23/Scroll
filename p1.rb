@@ -22,6 +22,6 @@ end
 puts sum 
 
 end_time = Time.now 
-puts "Total Time: " + (end_time - start_time).to_s + " seconds." 
+puts "Total Time: " + (end_time - start).to_s + " seconds." 
 
 # There's a super complicated algorithm that Ramanujan came up for precisely the same problem but its one of the most efficient ways to find divisors. Its a little too deep and complicated to grok though. 
