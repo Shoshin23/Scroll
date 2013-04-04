@@ -9,7 +9,7 @@ var express = require('express')
   , path = require('path')
   , twitter = require('ntwitter')
   , io = require('socket.io')
-  , date = require('./date');
+  , moment = require('moment');
 
 var app = express()
   , server = require('http').createServer(app)
@@ -34,7 +34,7 @@ app.configure('development', function(){
 app.get('/', routes.index);
 app.get('/users', user.list);
 
-console.log(Date.today().add(5).days());
+//console.log(Date.today().add(5).days());
 // Twitter Authenticate
 var twit = new twitter({
   consumer_key: 'AlG8jdQx6kt2pDcyWFabKQ',
@@ -42,16 +42,17 @@ var twit = new twitter({
   access_token_key: '13340162-mhlZTXjqSpqFFnuE6vS4O4P4WVw7o5T5pYCWlceKW',
   access_token_secret: 'HAa34YHzrd8reun6Kwh5Xjy2LdjkCvkaSlzTLdegM'
 });
-
+var week = moment().subtract('days',7);
 twit.stream('user', { track:"meTheKarthik" }, function(stream) {
   stream.on('data', function (data) {
-	 while(data.created_at <= (7).days().ago()) { 
+	 while(data.created_at <= week) { 
     io.sockets.volatile.emit('tweet', {
       user: data.screen_name,
       text: data.text,
       created_at: data.created_at
     });
 	 }
+	 /*
 	 stream.on('end', function(data) {
 		 console.log("end of streaming");
 	 });
@@ -62,7 +63,7 @@ twit.stream('user', { track:"meTheKarthik" }, function(stream) {
 	 setTimeout(stream.destroy,500000);
 
     //console.log(data);
-   
+   */
   });
 });
 

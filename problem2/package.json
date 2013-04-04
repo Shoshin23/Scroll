@@ -9,6 +9,7 @@
     "express": "3.x",
     "jade": "*",
     "ntwitter": "0.5.0",
-    "socket.io": "0.9.13"
+    "socket.io": "0.9.13",
+    "moment": "*"
   }
 }
