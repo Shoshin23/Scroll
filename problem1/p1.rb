@@ -14,12 +14,13 @@ final = [] # array to store the final value
 1.upto(100000) do |i| # the counter
   num_divisors = d(i) 
   if d(num_divisors) == i && i != num_divisors #implemented the main condition here
-    sum += i 
-    final << i #add number to the array.
+  	puts i 
+	  # sum += i 
+    #final << i #add number to the array.
   end
 end
 
-puts sum 
+# puts sum 
 
 end_time = Time.now 
 puts "Total Time: " + (end_time - start).to_s + " seconds." 
